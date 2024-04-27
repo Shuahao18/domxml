@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+<title>Students Grade</title>
+
+
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Student Grades</h1>
+    </header>
+
+    <div id="studentData">
+        <table>
+          <thead>
+            <tr>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Student information will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+ <!-- ============= style start ========== -->
+
+  <style>
+    
+    body, h1, h2, p, table, th, td{margin: 0; padding: 0;}
+    body {font-family: 'Montserrat', sans-serif; background-color: #f2f2f2;}
+    
+    .container {max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);}
+
+    header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+    
+  h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .section-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  caption {
+    background-color: #f2f2f2;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  
+  thead th {
+    padding: 15px;
+    text-align: left;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  tbody tr {
+    transition: background-color 0.3s ease;
+  }
+  
+  tbody tr:hover {
+    background-color: #e0e0e0;
+  }
+  
+  td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  @media screen and (max-width: 600px) {
+    h1 {
+      font-size: 28px;
+    }
+  
+    p {
+      font-size: 16px;
+    }
+  
+    thead th, tbody td {
+      padding: 10px;
+    }
+  }
+  
+  </style>
+
+<!-- ========== end of style ============ -->
+
+
+  
+
+<!-- ========== start of scripts ========== -->
+
+<script>
+  var xmlFileUrl = "ipt1.xml";
+  fetch(xmlFileUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.text();
+    })
+    .then((xmlString) => {
+      var parser = new DOMParser();
+      var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+      var studentDataContainer = document.getElementById('studentData');
+
+      // Filter out the ParserError section, if present
+      var sections = Array.from(xmlDoc.querySelectorAll('ipt1 > *')).filter(section => section.tagName !== 'ParserError');
+
+      sections.forEach(section => {
+        // Create a new table for each section group
+        var sectionTable = document.createElement('table');
+        sectionTable.classList.add('section-table');
+        
+        var sectionHeading = document.createElement('caption');
+        sectionHeading.textContent = section.tagName;
+        sectionTable.appendChild(sectionHeading);
+
+        var tableHeader = document.createElement('thead');
+        tableHeader.innerHTML = `
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Grade</th>
+          </tr>
+        `;
+        sectionTable.appendChild(tableHeader);
+
+        var tableBody = document.createElement('tbody');
+
+        section.querySelectorAll('student').forEach(student => {
+          var id = student.querySelector('id').textContent;
+          var name = student.querySelector('name').textContent;
+          var grade = student.querySelector('grade').textContent;
+
+          var row = document.createElement('tr');
+          row.innerHTML = `<td>${id}</td><td>${name}</td><td>${grade}</td>`;
+
+          tableBody.appendChild(row);
+
+          // Log data to console
+          console.log(`Name: ${name}, ID: ${id}, Grade: ${grade}`);
+        });
+
+        sectionTable.appendChild(tableBody);
+        studentDataContainer.appendChild(sectionTable);
+      });
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+</script>
+
+
+<!-- ==========end of scripts =========== -->
+</body>
+</html>

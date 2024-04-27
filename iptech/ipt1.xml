@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipt1>
+   <section2A>
+      <student>
+         <id>22-1111</id>
+         <name>Jason</name>
+         <grade>90</grade>
+      </student>
+      <student>
+         <id>22-12312</id>
+         <name>Mikha</name>
+         <grade>92</grade>
+      </student>
+      <student>
+         <id>22-11013</id>
+         <name>Coleet</name>
+         <grade>93</grade>
+      </student>
+      <student>
+         <id>22-31214</id>
+         <name>Maloi</name>
+         <grade>94</grade>
+      </student>
+   </section2A>
+
+
+   <section2B>
+      <student>
+         <id>22-002001</id>
+         <name>Aiah</name>
+         <grade>89</grade>
+      </student>
+      <student>
+         <id>22-000302</id>
+         <name>Sheenna</name>
+         <grade>88</grade>
+      </student>
+      <student>
+         <id>22-002003</id>
+         <name>Jhoanna</name>
+         <grade>87</grade>
+      </student>
+      <student>
+         <id>22-000304</id>
+         <name>Gween</name>
+         <grade>86</grade>
+      </student>
+   </section2B>
+
+   <section2C>
+      <student>
+         <id>22-00811</id>
+         <name>Stacey</name>
+         <grade>86</grade>
+      </student>
+      <student>
+         <id>22-02002</id>
+         <name>TANA</name>
+         <grade>84</grade>
+      </student>
+      <student>
+         <id>22-00432</id>
+         <name>Joshua</name>
+         <grade>82</grade>
+      </student>
+      <student>
+         <id>22-00432</id>
+         <name>joshua</name>
+         <grade>81</grade>
+      </student>
+   </section2C>
+</ipt1>
